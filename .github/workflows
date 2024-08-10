@@ -1,0 +1,31 @@
+name: C++ Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up C++ environment
+      uses: actions/setup-cpp@v1
+      with:
+        cpp-version: '11'  # or any version you prefer
+
+    - name: Build C++ program
+      run: |
+        g++ -o program main.cpp
+
+    - name: Run C++ program
+      run: |
+        echo "Testing program with input 10"
+        echo "10" | ./program
